@@ -50,3 +50,4 @@ D:\AppSettingsProject-main\obj\Debug\net8.0\refint\AppSettingsProject.dll
 D:\AppSettingsProject-main\obj\Debug\net8.0\AppSettingsProject.pdb
 D:\AppSettingsProject-main\obj\Debug\net8.0\AppSettingsProject.genruntimeconfig.cache
 D:\AppSettingsProject-main\obj\Debug\net8.0\ref\AppSettingsProject.dll
+D:\AppSettingsProject-main\obj\Debug\net8.0\AppSettingsProject.sourcelink.json
