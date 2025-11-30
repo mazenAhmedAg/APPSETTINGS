@@ -609,7 +609,7 @@ body {
 }
 
 /* ==========================================
-   DIVIDER - COMPACT
+   DIVIDER & CHECKBOX
    ========================================== */
 .divider {
     width: 100%;
@@ -624,6 +624,65 @@ body {
     padding: 0 10px;
     font-size: 0.8rem;
     color: #9CA3AF;
+}
+
+.checkbox-wrapper {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    background: #000;
+    padding: 0 10px;
+}
+
+.checkbox-wrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 18px;
+    width: 18px;
+    background-color: #2D2D35;
+    border-radius: 4px;
+    margin-right: 8px; /* RTL support might need margin-left if dir is rtl */
+    margin-left: 8px;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.checkbox-wrapper:hover .checkmark {
+    background-color: #3f3f46;
+}
+
+.checkbox-wrapper input:checked ~ .checkmark {
+    background-color: #8B5CF6;
+    border-color: #8B5CF6;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-wrapper input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-wrapper .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
 
 /* ==========================================
@@ -796,6 +855,141 @@ body {
 
 .btn-primary:active, .btn-secondary:active {
     transform: scale(0.98);
+}
+
+/* ==========================================
+   WASEEL TOGGLE SWITCH (iOS Style) - NEW
+   ========================================== */
+.section-toggle {
+    margin: 15px 0;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(236, 72, 153, 0.12));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.section-toggle:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 5px 20px rgba(139, 92, 246, 0.15);
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    gap: 20px;
+}
+
+.switch-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #E9D5FF;
+    font-family: 'Tajawal', sans-serif;
+    letter-spacing: 0.3px;
+    transition: color 0.3s;
+    flex: 1;
+    text-shadow: 0 2px 8px rgba(233, 213, 255, 0.2);
+}
+
+.switch-container:hover .switch-label {
+    color: #fff;
+}
+
+.switch-container input[type="checkbox"] {
+    display: none;
+}
+
+/* iOS Style Toggle Switch */
+.switch-slider {
+    position: relative;
+    width: 60px;
+    height: 32px;
+    background: linear-gradient(145deg, #2a2a2e, #1a1a1e);
+    border-radius: 50px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+    border: 2px solid #3a3a3e;
+    flex-shrink: 0;
+}
+
+/* Switch Circle/Ball */
+.switch-slider::before {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(145deg, #f5f5f5, #d4d4d4);
+    border-radius: 50%;
+    transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Checked State - Switch ON */
+.switch-container input[type="checkbox"]:checked + .switch-slider {
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
+    border-color: transparent;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.7), inset 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.switch-container input[type="checkbox"]:checked + .switch-slider::before {
+    transform: translateY(-50%) translateX(28px);
+    background: linear-gradient(145deg, #ffffff, #efefef);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover Effects */
+.switch-container:hover .switch-slider {
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(139, 92, 246, 0.4);
+}
+
+.switch-container:hover input[type="checkbox"]:checked + .switch-slider {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.9), inset 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Active/Click Animation */
+.switch-container:active .switch-slider::before {
+    width: 30px;
+}
+
+/* Waseel Section Show/Hide */
+#waseelSection {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    max-height: 2000px;
+    opacity: 1;
+}
+
+#waseelSection.hidden {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+}
+
+/* Disabled Input States */
+.input-group.disabled input,
+.input-group.disabled select {
+    background: rgba(20, 20, 25, 0.5) !important;
+    border-color: rgba(45, 45, 53, 0.5) !important;
+    color: #555 !important;
+    cursor: not-allowed !important;
+    opacity: 0.4 !important;
+}
+
+.input-group.disabled label {
+    color: #666;
+    opacity: 0.5;
+}
+
+.input-group.disabled {
+    pointer-events: none;
 }
 
 /* ==========================================

@@ -2,12 +2,15 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Belal Soft - Medical System Config</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=48">
+    <link rel="stylesheet" href="css/style.css?v=20251130">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -90,34 +93,46 @@
                         </div>
                     </div>
 
-                    <div class="divider">
-                        <span>بيانات Waseel</span>
+                    <!-- Waseel Section Toggle Switch -->
+                    <div class="section-toggle">
+                        <label class="switch-container">
+                            <span class="switch-label">تفعيل بيانات Waseel</span>
+                            <input type="checkbox" id="waseelToggle" checked>
+                            <span class="switch-slider"></span>
+                        </label>
                     </div>
 
-                    <!-- Waseel Username -->
-                    <div class="input-group">
-                        <label>اسم المستخدم</label>
-                        <div class="input-wrapper">
-                            <input type="text" id="waseelUser" placeholder="Username">
-                            <span class="status-icon"></span>
+                    <!-- Waseel Section (can be hidden) -->
+                    <div id="waseelSection">
+                        <div class="divider">
+                            <span>بيانات Waseel</span>
                         </div>
-                    </div>
 
-                    <!-- Waseel Password -->
-                    <div class="input-group">
-                        <label>كلمة المرور</label>
-                        <div class="input-wrapper">
-                            <input type="password" id="waseelPassword" placeholder="Password">
-                            <span class="status-icon"></span>
+                        <!-- Waseel Username -->
+                        <div class="input-group">
+                            <label>اسم المستخدم</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="waseelUser" placeholder="Username">
+                                <span class="status-icon"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Provider ID -->
-                    <div class="input-group">
-                        <label>معرف المزود (Provider ID)</label>
-                        <div class="input-wrapper">
-                            <input type="text" id="providerId" placeholder="مثال: 363443">
-                            <span class="status-icon"></span>
+                        <!-- Waseel Password -->
+                        <div class="input-group">
+                            <label>كلمة المرور</label>
+                            <div class="input-wrapper">
+                                <input type="password" id="waseelPassword" placeholder="Password">
+                                <span class="status-icon"></span>
+                            </div>
+                        </div>
+
+                        <!-- Provider ID -->
+                        <div class="input-group">
+                            <label>معرف المزود (Provider ID)</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="providerId" placeholder="مثال: 363443">
+                                <span class="status-icon"></span>
+                            </div>
                         </div>
                     </div>
 
