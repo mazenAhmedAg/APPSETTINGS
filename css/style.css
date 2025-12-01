@@ -20,22 +20,37 @@
     font-family: 'Inter', 'Tajawal', sans-serif;
 }
 
+html {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
 body {
-    background-color: var(--bg-dark);
+    background-color: #000000;
     color: var(--text-main);
     height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+    width: 100vw;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     perspective: 1500px;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .main-container {
     width: 100%;
     height: 100%;
     display: flex;
-    background: var(--bg-dark);
+    justify-content: center;
+    align-items: center;
+    background: transparent;
     position: relative;
     overflow: hidden;
 }
@@ -73,6 +88,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    max-width: 100%;
 }
 
 .logo-box {
@@ -81,7 +98,9 @@ body {
 }
 
 .landing-logo {
-    width: 380px;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
     filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.4));
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -292,25 +311,26 @@ body {
    LEFT PANEL (FORM) - COMPACT
    ========================================== */
 .left-panel {
-    width: 450px;
+    width: 520px;
     height: auto;
     min-height: auto;
     max-height: 94vh;
     
-    position: relative;
-    z-index: 10;
-    align-self: center;
-    margin-left: 25px;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
     
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 18px 30px;
+    padding: 20px 32px;
     
     background: transparent;
     border-radius: 24px;
     border: none;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow:0 20px 50px rgb(163 140 165 / 50%);
     overflow: hidden;
 }
 
@@ -333,12 +353,14 @@ body {
     z-index: -2;
 }
 
-/* الخلفية السوداء */
+/* الخلفية الشبه شفافة بدلاً من السوداء */
 .left-panel::after {
     content: '';
     position: absolute;
     inset: 3px;
-    background: #000000;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 21px;
     z-index: -1;
 }
@@ -354,20 +376,46 @@ body {
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    max-height: calc(94vh - 36px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+}
+
+/* Custom Scrollbar for Form Wrapper */
+.form-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+
+.form-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.form-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.4);
+    border-radius: 10px;
+}
+
+.form-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.6);
 }
 
 /* ==========================================
    RIGHT PANEL (VISUAL)
    ========================================== */
 .right-panel {
-    flex: 1;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: #050507;
+    background: #000000;
+    z-index: 1;
 }
 
 .glow-orb {
@@ -620,7 +668,6 @@ body {
 }
 
 .divider span {
-    background: #000;
     padding: 0 10px;
     font-size: 0.8rem;
     color: #9CA3AF;
@@ -1025,73 +1072,209 @@ body {
 }
 
 /* ==========================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN - FULLSCREEN BACKGROUND
    ========================================== */
+
+/* Large Desktop (> 1200px) - Default styling already applied */
+
+/* Medium Desktop (1024px - 1200px) */
 @media (max-width: 1200px) {
     .left-panel {
-        width: 420px;
-        padding: 16px 28px;
+        width: 480px;
+        right: 30px;
+        padding: 18px 28px;
+        max-height: 92vh;
+    }
+    
+    .visual-text h3 {
+        font-size: 2.4rem;
+    }
+    
+    .visual-text p {
+        font-size: 1.1rem;
     }
 }
 
+/* Tablets & iPad Portrait (768px - 1024px) */
 @media (max-width: 1024px) {
     .left-panel {
-        width: 400px;
-    }
-}
-
-@media (max-width: 900px) {
-    body {
-        overflow-y: auto;
+        width: 450px;
+        right: 20px;
+        padding: 16px 24px;
+        max-height: 90vh;
     }
     
-    .main-container {
-        flex-direction: column;
-        height: auto;
-        min-height: 100vh;
+    .form-header {
+        margin-bottom: 12px;
+        padding-bottom: 10px;
     }
     
-    .left-panel {
-        width: 90%;
-        max-width: 500px;
-        margin: 30px auto;
-        max-height: none;
+    .crazy-title {
+        font-size: 1.6rem;
     }
     
-    .right-panel {
-        width: 100%;
-        min-height: 400px;
-    }
-}
-
-@media (max-width: 600px) {
-    .left-panel {
-        width: 95%;
-        padding: 15px 20px;
+    .form-header p {
+        font-size: 0.8rem;
     }
     
     .input-group {
         margin-bottom: 10px;
     }
     
-    .form-header {
-        margin-bottom: 12px;
+    .input-group label {
+        font-size: 0.75rem;
+        margin-bottom: 4px;
+    }
+    
+    .input-group input,
+    .input-group select {
+        padding: 9px 11px;
+        font-size: 0.85rem;
+    }
+    
+    .divider {
+        margin: 12px 0;
+    }
+    
+    .zatca-mode-selector {
+        padding: 10px 12px;
+        margin: 10px 0;
+    }
+    
+    .mode-label {
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+    }
+    
+    .mode-box {
+        padding: 8px 6px;
+    }
+    
+    .mode-icon {
+        font-size: 1.1rem;
+    }
+    
+    .mode-text {
+        font-size: 0.7rem;
+    }
+    
+    .form-actions {
+        margin-top: 12px;
+        gap: 10px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .switch-label {
+        font-size: 0.9rem;
+    }
+    
+    .switch-slider {
+        width: 55px;
+        height: 30px;
+    }
+    
+    .switch-slider::before {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .switch-container input[type="checkbox"]:checked + .switch-slider::before {
+        transform: translateY(-50%) translateX(25px);
+    }
+    
+    .visual-text h3 {
+        font-size: 2rem;
+    }
+    
+    .visual-text p {
+        font-size: 1rem;
+    }
+    
+    .brand-logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .brand-overlay h2 {
+        font-size: 1rem;
+    }
+}
+
+/* iPad Mini & Tablets (768px - 900px) */
+@media (max-width: 900px) {
+    .left-panel {
+        width: 420px;
+        right: 15px;
+        padding: 14px 22px;
+        max-height: 88vh;
     }
     
     .crazy-title {
         font-size: 1.5rem;
     }
-}
-
-@media (max-width: 500px) {
-    .mode-options {
-        padding: 3px;
+    
+    .form-header p {
+        font-size: 0.75rem;
+    }
+    
+    .input-group {
+        margin-bottom: 9px;
+    }
+    
+    .input-group label {
+        font-size: 0.72rem;
+    }
+    
+    .input-group input,
+    .input-group select {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .divider {
+        margin: 10px 0;
+        font-size: 0.75rem;
+    }
+    
+    .section-toggle {
+        padding: 4px 6px;
+    }
+    
+    .switch-label {
+        font-size: 0.85rem;
+    }
+    
+    .switch-slider {
+        width: 52px;
+        height: 28px;
+    }
+    
+    .switch-slider::before {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .switch-container input[type="checkbox"]:checked + .switch-slider::before {
+        transform: translateY(-50%) translateX(24px);
+    }
+    
+    .zatca-mode-selector {
+        padding: 9px 10px;
+        margin: 9px 0;
+    }
+    
+    .mode-label {
+        font-size: 0.75rem;
+        margin-bottom: 7px;
     }
     
     .mode-box {
-        flex-direction: column;
-        gap: 4px;
-        padding: 8px 4px;
+        padding: 7px 5px;
+        gap: 5px;
     }
     
     .mode-icon {
@@ -1101,4 +1284,554 @@ body {
     .mode-text {
         font-size: 0.65rem;
     }
+    
+    .form-actions {
+        margin-top: 10px;
+        gap: 8px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 9px 14px;
+        font-size: 0.8rem;
+        gap: 6px;
+    }
+    
+    .visual-text h3 {
+        font-size: 1.8rem;
+    }
+    
+    .visual-text p {
+        font-size: 0.9rem;
+    }
+    
+    .brand-overlay {
+        top: 20px;
+        left: 20px;
+    }
+    
+    .brand-logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .brand-overlay h2 {
+        font-size: 0.9rem;
+    }
+    
+    /* Form wrapper scrolling */
+    .form-wrapper {
+        max-height: calc(88vh - 30px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 5px;
+    }
+    
+    .form-wrapper::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    .form-wrapper::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .form-wrapper::-webkit-scrollbar-thumb {
+        background: rgba(139, 92, 246, 0.3);
+        border-radius: 10px;
+    }
+    
+    .form-wrapper::-webkit-scrollbar-thumb:hover {
+        background: rgba(139, 92, 246, 0.5);
+    }
 }
+
+/* Small Tablets & Large Mobile (600px - 768px) */
+@media (max-width: 768px) {
+    .left-panel {
+        width: 90%;
+        max-width: 480px;
+        right: auto;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 14px 20px;
+        max-height: 85vh;
+    }
+    
+    .crazy-title {
+        font-size: 1.4rem;
+    }
+    
+    .form-header p {
+        font-size: 0.75rem;
+    }
+    
+    .input-group {
+        margin-bottom: 8px;
+    }
+    
+    .input-group label {
+        font-size: 0.72rem;
+    }
+    
+    .input-group input,
+    .input-group select {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .divider {
+        margin: 8px 0;
+    }
+    
+    .zatca-mode-selector {
+        padding: 8px;
+        margin: 8px 0;
+    }
+    
+    .mode-label {
+        font-size: 0.72rem;
+    }
+    
+    .mode-box {
+        padding: 7px 4px;
+    }
+    
+    .form-actions {
+        gap: 8px;
+        margin-top: 10px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 9px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .visual-text h3 {
+        font-size: 1.6rem;
+    }
+    
+    .visual-text p {
+        font-size: 0.85rem;
+    }
+    
+    .brand-overlay {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .brand-logo {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .brand-overlay h2 {
+        font-size: 0.85rem;
+    }
+    
+    .landing-logo {
+        max-width: 300px;
+    }
+    
+    .landing-title {
+        font-size: 2.8rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile Portrait (< 600px) */
+@media (max-width: 600px) {
+    .left-panel {
+        width: 95%;
+        max-width: none;
+        padding: 12px 18px;
+        max-height: 88vh;
+    }
+    
+    .form-wrapper {
+        max-height: calc(88vh - 30px);
+    }
+    
+    .form-header {
+        margin-bottom: 10px;
+    }
+    
+    .crazy-title {
+        font-size: 1.3rem;
+    }
+    
+    .form-header p {
+        font-size: 0.7rem;
+    }
+    
+    .input-group {
+        margin-bottom: 7px;
+    }
+    
+    .input-group label {
+        font-size: 0.7rem;
+    }
+    
+    .input-group input,
+    .input-group select {
+        padding: 7px 9px;
+        font-size: 0.75rem;
+    }
+    
+    .divider {
+        margin: 7px 0;
+    }
+    
+    .zatca-mode-selector {
+        padding: 7px;
+        margin: 7px 0;
+    }
+    
+    .mode-label {
+        font-size: 0.68rem;
+    }
+    
+    .mode-box {
+        padding: 6px 3px;
+    }
+    
+    .form-actions {
+        gap: 7px;
+        margin-top: 8px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .visual-text h3 {
+        font-size: 1.3rem;
+    }
+    
+    .visual-text p {
+        font-size: 0.75rem;
+    }
+    
+    .visual-text {
+        bottom: 30px;
+    }
+    
+    .landing-logo {
+        max-width: 250px;
+    }
+    
+    .landing-title {
+        font-size: 2.2rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .start-btn {
+        padding: 12px 35px;
+        font-size: 1rem;
+    }
+    
+    .glow-orb {
+        filter: blur(60px);
+        opacity: 0.3;
+    }
+    
+    .orb-1 {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .orb-2 {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .left-panel {
+        width: 96%;
+        padding: 10px 15px;
+        max-height: 90vh;
+    }
+    
+    .form-wrapper {
+        max-height: calc(90vh - 25px);
+    }
+    
+    .crazy-title {
+        font-size: 1.2rem;
+    }
+    
+    .input-group {
+        margin-bottom: 6px;
+    }
+    
+    .mode-options {
+        padding: 3px;
+    }
+    
+    .mode-box {
+        flex-direction: column;
+        gap: 3px;
+        padding: 6px 3px;
+    }
+    
+    .mode-icon {
+        font-size: 0.95rem;
+    }
+    
+    .mode-text {
+        font-size: 0.6rem;
+    }
+    
+    .switch-label {
+        font-size: 0.8rem;
+    }
+    
+    .switch-slider {
+        width: 48px;
+        height: 26px;
+    }
+    
+    .switch-slider::before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .switch-container input[type="checkbox"]:checked + .switch-slider::before {
+        transform: translateY(-50%) translateX(22px);
+    }
+    
+    .landing-logo {
+        max-width: 200px;
+    }
+    
+    .landing-title {
+        font-size: 1.8rem;
+        white-space: normal;
+        text-align: center;
+    }
+    
+    .landing-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .start-btn {
+        padding: 11px 30px;
+        font-size: 0.95rem;
+    }
+    
+    .visual-text h3 {
+        font-size: 1.1rem;
+    }
+    
+    .visual-text p {
+        font-size: 0.7rem;
+    }
+}
+
+/* Extra Small Mobile (< 380px) */
+@media (max-width: 380px) {
+    .left-panel {
+        width: 98%;
+        padding: 8px 12px;
+        max-height: 92vh;
+    }
+    
+    .form-wrapper {
+        max-height: calc(92vh - 20px);
+    }
+    
+    .crazy-title {
+        font-size: 1.1rem;
+    }
+    
+    .form-header p {
+        font-size: 0.65rem;
+    }
+    
+    .input-group label {
+        font-size: 0.65rem;
+    }
+    
+    .input-group input,
+    .input-group select {
+        padding: 6px 8px;
+        font-size: 0.7rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 7px 9px;
+        font-size: 0.7rem;
+    }
+    
+    .landing-logo {
+        max-width: 180px;
+    }
+    
+    .landing-title {
+        font-size: 1.5rem;
+    }
+    
+    .start-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape Mode for Small Devices */
+@media (max-height: 600px) and (orientation: landscape) {
+    .left-panel {
+        max-height: 95vh;
+        padding: 8px 20px;
+    }
+    
+    .form-wrapper {
+        max-height: calc(95vh - 20px);
+    }
+    
+    .form-header {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+    }
+    
+    .crazy-title {
+        font-size: 1.3rem;
+    }
+    
+    .form-header p {
+        font-size: 0.7rem;
+    }
+    
+    .input-group {
+        margin-bottom: 6px;
+    }
+    
+    .input-group label {
+        font-size: 0.7rem;
+        margin-bottom: 3px;
+    }
+    
+    .input-group input,
+    .input-group select {
+        padding: 6px 9px;
+        font-size: 0.75rem;
+    }
+    
+    .divider {
+        margin: 6px 0;
+    }
+    
+    .zatca-mode-selector {
+        padding: 6px 8px;
+        margin: 6px 0;
+    }
+    
+    .mode-label {
+        font-size: 0.65rem;
+        margin-bottom: 5px;
+    }
+    
+    .mode-box {
+        padding: 5px 4px;
+    }
+    
+    .form-actions {
+        margin-top: 8px;
+        gap: 6px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    
+    .visual-text {
+        bottom: 20px;
+    }
+    
+    .visual-text h3 {
+        font-size: 1.4rem;
+    }
+    
+    .visual-text p {
+        font-size: 0.75rem;
+    }
+    
+    .landing-logo {
+        max-width: 180px;
+    }
+    
+    .landing-title {
+        font-size: 2rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 30px;
+    }
+    
+    .start-btn {
+        padding: 10px 30px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Very Short Landscape Screens */
+@media (max-height: 450px) and (orientation: landscape) {
+    .left-panel {
+        max-height: 98vh;
+        padding: 6px 18px;
+    }
+    
+    .form-wrapper {
+        max-height: calc(98vh - 15px);
+    }
+    
+    .crazy-title {
+        font-size: 1.1rem;
+    }
+    
+    .input-group {
+        margin-bottom: 4px;
+    }
+    
+    .input-group label {
+        font-size: 0.65rem;
+        margin-bottom: 2px;
+    }
+    
+    .input-group input,
+    .input-group select {
+        padding: 5px 8px;
+        font-size: 0.7rem;
+    }
+    
+    .divider {
+        margin: 4px 0;
+    }
+    
+    .section-toggle {
+        padding: 3px 5px;
+    }
+    
+    .zatca-mode-selector {
+        padding: 5px 6px;
+        margin: 5px 0;
+    }
+    
+    .mode-box {
+        padding: 4px 3px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+}
+
