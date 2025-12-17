@@ -311,7 +311,7 @@ body {
    LEFT PANEL (FORM) - COMPACT
    ========================================== */
 .left-panel {
-    width: 520px;
+    width: 650px;
     height: auto;
     min-height: auto;
     max-height: 94vh;
@@ -500,7 +500,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    transform: scale(1.25);
+    transform: scale(1.25) translateX(-150px);
     transform-origin: center center;
 }
 
@@ -511,6 +511,7 @@ body {
     z-index: 3;
     width: 100%;
     pointer-events: none;
+    transform: translateX(-150px);
 }
 
 .visual-text h3 {
@@ -730,6 +731,70 @@ body {
     border: solid white;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
+}
+
+/* ==========================================
+   TIMER INPUT STYLE
+   ========================================== */
+.timer-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+
+.timer-input:focus-within {
+    border-color: #8B5CF6;
+    background: #202025;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+}
+
+.timer-icon {
+    color: #8B5CF6;
+    font-size: 1.2rem;
+    animation: pulseTimer 2s ease-in-out infinite;
+}
+
+@keyframes pulseTimer {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+.timer-input input[type="number"] {
+    width: 70px;
+    padding: 8px 10px;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.timer-input input[type="number"]::-webkit-outer-spin-button,
+.timer-input input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.timer-input input[type="number"]:focus {
+    outline: none;
+    border-color: #8B5CF6;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+}
+
+.timer-unit {
+    color: #9CA3AF;
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
 /* ==========================================
@@ -1080,7 +1145,7 @@ body {
 /* Medium Desktop (1024px - 1200px) */
 @media (max-width: 1200px) {
     .left-panel {
-        width: 480px;
+        width: 600px;
         right: 30px;
         padding: 18px 28px;
         max-height: 92vh;
@@ -1098,7 +1163,7 @@ body {
 /* Tablets & iPad Portrait (768px - 1024px) */
 @media (max-width: 1024px) {
     .left-panel {
-        width: 450px;
+        width: 580px;
         right: 20px;
         padding: 16px 24px;
         max-height: 90vh;
@@ -1207,7 +1272,7 @@ body {
 /* iPad Mini & Tablets (768px - 900px) */
 @media (max-width: 900px) {
     .left-panel {
-        width: 420px;
+        width: 550px;
         right: 15px;
         padding: 14px 22px;
         max-height: 88vh;

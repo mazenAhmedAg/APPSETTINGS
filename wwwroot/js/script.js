@@ -306,11 +306,12 @@ function generateConfigFile() {
     ? document.getElementById("providerId").value || ""
     : "";
 
-  // Get Zatca Mode
+  // Get Zatca Mode and Interval
   const zatcaModeInput = document.querySelector(
     'input[name="zatcaMode"]:checked'
   );
   const zatcaMode = zatcaModeInput ? zatcaModeInput.value : "Production";
+  const zatcaInterval = parseInt(document.getElementById("zatcaInterval").value) || 1;
 
   // Build Connection Strings Object
   const connectionStrings = {};
@@ -339,6 +340,7 @@ function generateConfigFile() {
   let zatcaApi = null;
   if (zatcaMode !== "None") {
     zatcaApi = {
+      IntervalMinutes: zatcaInterval,
       BaseUrlProducation: "https://gw-fatoora.zatca.gov.sa/e-invoicing/core/",
       BaseUrlTest:
         "https://gw-fatoora.zatca.gov.sa/e-invoicing/developer-portal/",
@@ -379,14 +381,14 @@ function generateConfigFile() {
         {
           Name: "File",
           Args: {
-            path: "C:\\\\WEB ERROR\\\\logs.txt",
+            path: "C:\\WEB ERROR\\logs.txt",
             outputTemplate: "{Timestamp} {Message}{NewLine:1}{Exception:1}",
           },
         },
         {
           Name: "File",
           Args: {
-            path: "C:\\\\WEB ERROR\\\\logs.txt",
+            path: "C:\\WEB ERROR\\logs.txt",
             formatter: "Serilog.Formatting.Json.JsonFormatter, Serilog",
           },
         },
@@ -521,6 +523,7 @@ document.addEventListener("DOMContentLoaded", () => {
     waseelPassword: "كلمة مرور Waseel",
     providerId: "معرف المزود",
     dbNameInput: "اسم قاعدة البيانات",
+    zatcaInterval: "فترة التحديث",
   };
 
   inputs.forEach((input) => {

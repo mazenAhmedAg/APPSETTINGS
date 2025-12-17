@@ -88,7 +88,7 @@
                     <div class="input-group" id="dbNameContainer" style="display: none;">
                         <label>Initial Catalog (اسم القاعدة الجديد)</label>
                         <div class="input-wrapper">
-                            <input type="text" id="dbNameInput" placeholder="اتركه فارغاً لاستخدام الافتراضי">
+                            <input type="text" id="dbNameInput" placeholder="اتركه فارغاً لاستخدام الافتراضي">
                             <span class="status-icon"></span>
                         </div>
                     </div>
@@ -140,6 +140,17 @@
                         <span>إعدادات الزكاة (Zatca API)</span>
                     </div>
 
+                    <!-- Zatca Interval Minutes -->
+                    <div class="input-group">
+                        <label>فترة التحديث (بالدقائق)</label>
+                        <div class="input-wrapper timer-input">
+                            <i class="fas fa-clock timer-icon"></i>
+                            <input type="number" id="zatcaInterval" value="1" min="1" max="60" dir="ltr">
+                            <span class="timer-unit">دقيقة</span>
+                            <span class="status-icon"></span>
+                        </div>
+                    </div>
+
                     <!-- Zatca Mode Selector -->
                     <div class="zatca-mode-selector">
                         <label class="mode-label">اختر وضع الزكاة:</label>
@@ -170,7 +181,6 @@
                         </div>
                     </div>
 
-                    <!-- Submit Button -->
                     <!-- Action Buttons -->
                     <div class="form-actions">
                         <button type="submit" class="btn-primary">
